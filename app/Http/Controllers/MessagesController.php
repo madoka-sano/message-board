@@ -34,6 +34,11 @@ class MessagesController extends Controller
     // postでmessages/にアクセスされた場合の「新規登録処理」
     public function store(Request $request)
     {
+        // バリデーション
+        $request->validate([
+            'content' => 'required|max:255',
+        ]);
+
         // メッセージを作成
         $message = new Message;
         $message->content = $request->content;
